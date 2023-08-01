@@ -1,0 +1,10 @@
+{
+  "language": "java",
+  "app": "mvn -T 1C -e -q compile exec:java",
+  "projectId": "539feb51-235e-49f7-ae93-12960ad73e64",
+  "sendCrashReports": "true",
+  "codeMakerOutput": "src/main/java/imports",
+  "terraformProviders": ["hashicorp/aws@~> 5.10"],
+  "terraformModules": [],
+  "context": {}
+}
