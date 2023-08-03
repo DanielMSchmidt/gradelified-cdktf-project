@@ -17,6 +17,9 @@ import imports.aws.dynamodb_table.DynamodbTable;
 import imports.aws.dynamodb_table.DynamodbTableAttribute;
 import imports.aws.sns_topic.SnsTopic;
 
+import com.hashicorp.cdktf.providers.google.compute_network.ComputeNetwork;
+import com.hashicorp.cdktf.providers.google.provider.GoogleProvider;
+
 public class MainStack extends TerraformStack
 {
     public MainStack(final Construct scope, final String id) {
@@ -44,5 +47,14 @@ public class MainStack extends TerraformStack
         for (int i = 0; i < topics.size(); i++) {
             TerraformOutput.Builder.create(this, "sns_topic" + i).value(topics.get(i).getName()).build();
         }
+
+        GoogleProvider.Builder.create(this, "Google")
+            .region("us-central1")
+            .zone("us-central1-c")
+            .project("terraform-cdk")
+            .build();
+
+        ComputeNetwork network = ComputeNetwork.Builder.create(this, "Network").name("cdktf-network").build();
+
     }
 }
